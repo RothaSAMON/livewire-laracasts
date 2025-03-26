@@ -1,18 +1,30 @@
 <section>
-    <div>
-        Hello, {{ $name }}!
-    </div>
-
     <form 
         {{-- action="" --}}
-        wire:submit="changeName(document.querySelector('#newName').value)" 
+        wire:submit="changeName()" 
     >
-        <div class="mt-2">
+        <div class="mt-2 flex gap-2">
+            <select 
+                type="text"
+                placeholder="John Doe"
+                class="border rounded-md border-gray-500 p-2" 
+                {{-- wire:model.live.debounce.1000ms="name" --}}
+                wire:model.fill="greeting"
+            >
+                <option value="Hello">Hello</option>
+                <option value="Hi">Hi</option>
+                <option value="Hey">Hey</option>
+                <option value="Howdy">Howdy</option>
+            </select>
+
             <input 
-            id="newName"
-            type="text"
-            placeholder="John Doe"
-            class="block w-full border rounded-md border-gray-500 p-2" />
+                {{-- id="newName" --}}
+                type="text"
+                placeholder="Name . . ."
+                class="block w-full border rounded-md border-gray-500 p-2" 
+                {{-- wire:model.live.debounce.1000ms="name" --}}
+                wire:model="name"
+            />
         </div>
 
         <div class="mt-2">
@@ -25,4 +37,10 @@
             </button>
         </div>
     </form>
+
+    @if ($name != '')
+    <div class="mt-2">
+        {{ $greeting }}, {{ $name }}!
+    </div>  
+    @endif
 </section>
