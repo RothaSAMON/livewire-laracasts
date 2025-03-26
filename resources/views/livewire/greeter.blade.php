@@ -1,7 +1,7 @@
 <section>
     <form 
         {{-- action="" --}}
-        wire:submit="changeName()" 
+        wire:submit="changeGreeting()" 
     >
         <div class="mt-2 flex gap-2">
             <select 
@@ -27,6 +27,13 @@
             />
         </div>
 
+        {{-- Error message --}}
+        <div class="m-2 mb-4 text-red-600">
+            @error('name')
+                {{ $message }}
+            @enderror
+        </div>
+
         <div class="mt-2">
             <button
                 type="submit"
@@ -38,9 +45,9 @@
         </div>
     </form>
 
-    @if ($name != '')
+    @if ($greetingMessage != '')
     <div class="mt-2">
-        {{ $greeting }}, {{ $name }}!
+        {{ $greetingMessage }}
     </div>  
     @endif
 </section>
