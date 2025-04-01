@@ -1,13 +1,18 @@
 <?php
 
+use App\Livewire\Search;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
+use App\Livewire\ShowArticle;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
+Route::get('/search', Search::class);
+Route::get('/articles/{article}', ShowArticle::class);
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

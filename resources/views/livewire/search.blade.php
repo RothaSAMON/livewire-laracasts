@@ -1,8 +1,4 @@
 <section>
-    <h1 class="text-2xl ">Search : 
-        <span class="underline text-blue-400">Do whatever</span> !
-    </h1>
-
     <form>
         <div class="mt-2 flex gap-2">
             <input 
@@ -25,7 +21,7 @@
     <div class="mt-4">
         @foreach ($results as $result)
             <div class="pt-2">
-                {{ $result->title}}
+                <a href="/articles/{{ $result->id }}">{{ $result->title}}</a>
             </div>
         @endforeach
     </div>
